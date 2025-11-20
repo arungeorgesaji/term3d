@@ -10,8 +10,12 @@ add_library(Math3D
     src/Math3D/Vector2.cpp
     src/Math3D/Vector3.cpp
     src/Math3D/Vector4.cpp
+    src/Math3D/Matrix4.cpp
     src/Math3D/MathUtils.cpp
 )
 
 add_executable(MathTest tests/test_math.cpp)
 target_link_libraries(MathTest Math3D)
+
+add_executable(MatrixTest tests/test_matrix.cpp)
+target_link_libraries(MatrixTest Math3D)
