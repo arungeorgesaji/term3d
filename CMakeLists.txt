@@ -19,3 +19,6 @@ target_link_libraries(MathTest Math3D)
 
 add_executable(MatrixTest tests/test_matrix.cpp)
 target_link_libraries(MatrixTest Math3D)
+
+add_executable(InversionTest tests/test_matrix_inversion.cpp)
+target_link_libraries(InversionTest Math3D)
