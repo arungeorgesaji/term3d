@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Math3D/Vector3.h"
 
 namespace Math3D {
