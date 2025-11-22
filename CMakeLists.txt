@@ -10,6 +10,7 @@ add_library(Math3D
     src/Math3D/Vector2.cpp
     src/Math3D/Vector3.cpp
     src/Math3D/Vector4.cpp
+    src/Math3D/Matrix3.cpp
     src/Math3D/Matrix4.cpp
     src/Math3D/MathUtils.cpp
 )

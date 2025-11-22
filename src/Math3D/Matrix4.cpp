@@ -1,4 +1,5 @@
 #include "Math3D/Matrix4.h"
+#include "Math3D/Matrix3.h"  
 #include "Math3D/MathUtils.h"
 #include <cmath>
 #include <cstring>
@@ -138,7 +139,45 @@ float Matrix4::Determinant() const {
     return det;
 }
 
+bool Matrix4::IsAffine() const {
+    return MathUtils::Approximately(m[3], 0.0f) &&
+           MathUtils::Approximately(m[7], 0.0f) &&
+           MathUtils::Approximately(m[11], 0.0f) &&
+           MathUtils::Approximately(m[15], 1.0f);
+}
+
+Matrix4 Matrix4::FastInvertAffine() const {
+    Matrix3 rotation;
+    rotation(0, 0) = m[0]; rotation(0, 1) = m[4]; rotation(0, 2) = m[8];
+    rotation(1, 0) = m[1]; rotation(1, 1) = m[5]; rotation(1, 2) = m[9];
+    rotation(2, 0) = m[2]; rotation(2, 1) = m[6]; rotation(2, 2) = m[10];
+    
+    Vector3 translation(m[12], m[13], m[14]);
+    
+    Matrix3 invRotation = rotation.Transposed();
+    
+    Vector3 invTranslation = -(invRotation * translation);
+    
+    Matrix4 result;
+    
+    result(0, 0) = invRotation(0, 0); result(0, 1) = invRotation(0, 1); result(0, 2) = invRotation(0, 2);
+    result(1, 0) = invRotation(1, 0); result(1, 1) = invRotation(1, 1); result(1, 2) = invRotation(1, 2);
+    result(2, 0) = invRotation(2, 0); result(2, 1) = invRotation(2, 1); result(2, 2) = invRotation(2, 2);
+    
+    result(0, 3) = invTranslation.x;
+    result(1, 3) = invTranslation.y;
+    result(2, 3) = invTranslation.z;
+    
+    result(3, 0) = 0.0f; result(3, 1) = 0.0f; result(3, 2) = 0.0f; result(3, 3) = 1.0f;
+    
+    return result;
+}
+
 Matrix4 Matrix4::Inverted() const {
+    if (IsAffine()) {
+        return FastInvertAffine();
+    }
+
     float inv[16];
     
     inv[0] = m[5]  * m[10] * m[15] - 

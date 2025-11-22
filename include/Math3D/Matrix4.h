@@ -36,6 +36,8 @@ public:
     
     Matrix4 Transposed() const;
     float Determinant() const;
+    bool IsAffine() const;
+    Matrix4 FastInvertAffine() const;
     Matrix4 Inverted() const;
     
     static Matrix4 Identity();
