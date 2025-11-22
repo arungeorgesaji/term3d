@@ -1,5 +1,5 @@
 #include "Math3D/Vector4.h"
-#include "Math3D/Vector3.h"  
+#include "Math3D/Vector3.h"
 #include <cmath>
 
 namespace Math3D {
