@@ -46,5 +46,10 @@ target_link_libraries(MeshTest Term3D)
 add_executable(RendererInterfaceTest tests/test_renderer_interface.cpp)
 target_link_libraries(RendererInterfaceTest Term3D)
 
-add_executable(CubeDemo demo/cube_demo.cpp)
-target_link_libraries(CubeDemo Term3D glfw)
+add_executable(SimpleCubeDemo demo/simple_cube.cpp)
+add_executable(TransformationChainDemo demo/transformation_chain.cpp)
+add_executable(RealtimeMeshDemo demo/realtime_mesh.cpp)
+
+target_link_libraries(SimpleCubeDemo Term3D glfw)
+target_link_libraries(TransformationChainDemo Term3D glfw)
+target_link_libraries(RealtimeMeshDemo Term3D glfw)
