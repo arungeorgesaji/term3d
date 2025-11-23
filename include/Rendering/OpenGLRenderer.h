@@ -33,7 +33,7 @@ public:
     OpenGLRenderer();
     ~OpenGLRenderer();
     
-    bool Initialize(int width, int height) override;
+    bool Initialize(int width, int height, const char* title) override;
     void Shutdown() override;
     void Resize(int width, int height) override;
     

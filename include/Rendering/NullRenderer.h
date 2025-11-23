@@ -13,7 +13,7 @@ private:
     Math3D::Matrix4 m_view;
 
 public:
-    bool Initialize(int width, int height) override {
+    bool Initialize(int width, int height, const char* title) override {
         m_width = width;
         m_height = height;
         return true;

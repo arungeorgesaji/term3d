@@ -36,7 +36,7 @@ OpenGLRenderer::~OpenGLRenderer() {
     Shutdown();
 }
 
-bool OpenGLRenderer::Initialize(int width, int height) {
+bool OpenGLRenderer::Initialize(int width, int height, const char* title) {
     m_width = width;
     m_height = height;
 
@@ -49,7 +49,7 @@ bool OpenGLRenderer::Initialize(int width, int height) {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     
-    m_window = glfwCreateWindow(width, height, "Term3D - WORKING", nullptr, nullptr);
+    m_window = glfwCreateWindow(width, height, title, nullptr, nullptr);
     if (!m_window) {
         std::cerr << "Window creation failed" << std::endl;
         glfwTerminate();

@@ -20,6 +20,7 @@ add_library(Term3D
     src/Geometry/BoundingBox.cpp
     src/Geometry/Mesh.cpp
     src/Rendering/OpenGLRenderer.cpp
+    src/Core/GraphicsEngine.cpp
 )
 
 target_link_libraries(Term3D 
@@ -45,5 +46,5 @@ target_link_libraries(MeshTest Term3D)
 add_executable(RendererInterfaceTest tests/test_renderer_interface.cpp)
 target_link_libraries(RendererInterfaceTest Term3D)
 
-add_executable(SimpleCubeDemo demo/simple_cube.cpp)
-target_link_libraries(SimpleCubeDemo Term3D glfw)
+add_executable(CubeDemo demo/cube_demo.cpp)
+target_link_libraries(CubeDemo Term3D glfw)

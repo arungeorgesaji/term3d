@@ -13,7 +13,7 @@ class IRenderer {
 public:
     virtual ~IRenderer() = default;
 
-    virtual bool Initialize(int width, int height) = 0;
+    virtual bool Initialize(int width, int height, const char* title) = 0;
     virtual void Shutdown() = 0;
     virtual void Resize(int width, int height) = 0;
 

@@ -10,7 +10,7 @@ void TestRendererInterface() {
     std::cout << "Testing Renderer Interface..." << std::endl;
     
     NullRenderer renderer;
-    if (renderer.Initialize(800, 600)) {
+    if (renderer.Initialize(800, 600, "TestRendererInterface")) {
         std::cout << "NullRenderer initialization test passed" << std::endl;
     } else {
         std::cout << "NullRenderer initialization test failed" << std::endl;
