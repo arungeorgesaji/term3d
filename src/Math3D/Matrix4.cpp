@@ -376,9 +376,8 @@ Matrix4 Matrix4::Perspective(float fov, float aspect, float near, float far) {
     result(0, 0) = 1.0f / (aspect * tanHalfFov);
     result(1, 1) = 1.0f / tanHalfFov;
     result(2, 2) = -(far + near) / (far - near);
-    result(2, 3) = -1.0f;
-    result(3, 2) = -(2.0f * far * near) / (far - near);
-    result(3, 3) = 0.0f;
+    result(3, 2) = -(2.0f * far * near) / (far - near);  
+    result(2, 3) = -1.0f;   
     
     return result;
 }
@@ -400,12 +399,12 @@ Matrix4 Matrix4::LookAt(const Vector3& eye, const Vector3& target, const Vector3
     Vector3 y = z.Cross(x);
     
     Matrix4 result = Identity();
-    result(0, 0) = x.x; result(0, 1) = x.y; result(0, 2) = x.z;
-    result(1, 0) = y.x; result(1, 1) = y.y; result(1, 2) = y.z;
-    result(2, 0) = z.x; result(2, 1) = z.y; result(2, 2) = z.z;
-    result(0, 3) = -x.Dot(eye);
-    result(1, 3) = -y.Dot(eye);
-    result(2, 3) = -z.Dot(eye);
+    result(0, 0) = x.x; result(1, 0) = x.y; result(2, 0) = x.z;  
+    result(0, 1) = y.x; result(1, 1) = y.y; result(2, 1) = y.z;  
+    result(0, 2) = z.x; result(1, 2) = z.y; result(2, 2) = z.z;  
+    result(3, 0) = -x.Dot(eye);  
+    result(3, 1) = -y.Dot(eye);  
+    result(3, 2) = -z.Dot(eye);  
     
     return result;
 }
