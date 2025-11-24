@@ -1,5 +1,9 @@
 # Term3D
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/arungeorgesaji/term3d/main/term3d.gif" width="600" alt="Term3D Demo">
+</p>
+
 A lightweight 3D graphics engine built with C++ and OpenGL, designed for real-time rendering and geometric transformations.
 
 ## Overview
@@ -35,5 +39,5 @@ target_link_libraries(YourApp Term3D)
 - GLEW
 - GLFW3 (for demos only)
 
-> Check out /demo for demos/examples on how to use Term3D. 
+> Check out /demo for examples on how to use Term3D. 
 > The library was made for siege during my exam week and is not worked on much and is not ready for any real use. As it has very limited features and documentation.
