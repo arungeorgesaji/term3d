@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 3.15)
-project(Math3D)
-
+project(Term3D VERSION 1.0.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+option(TERM3D_BUILD_TESTS "Build tests" OFF)
+option(TERM3D_BUILD_DEMOS "Build demos" OFF)
 
 find_package(OpenGL REQUIRED)
 find_package(glfw3 REQUIRED)
 find_package(GLEW REQUIRED)
-
-include_directories(include)
 
 add_library(Term3D
     src/Math3D/Vector2.cpp
@@ -23,33 +23,42 @@ add_library(Term3D
     src/Core/GraphicsEngine.cpp
 )
 
-target_link_libraries(Term3D 
+target_include_directories(Term3D PUBLIC 
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+)
+
+target_link_libraries(Term3D PUBLIC
     OpenGL::GL 
     GLEW::GLEW
 )
 
-add_executable(MathTest tests/test_math.cpp)
-target_link_libraries(MathTest Term3D)
+if(TERM3D_BUILD_TESTS)
+    add_executable(MathTest tests/test_math.cpp)
+    target_link_libraries(MathTest Term3D)
+    
+    add_executable(MatrixTest tests/test_matrix.cpp)
+    target_link_libraries(MatrixTest Term3D)
+    
+    add_executable(InversionTest tests/test_matrix_inversion.cpp)
+    target_link_libraries(InversionTest Term3D)
+    
+    add_executable(GeometryBasicTest tests/test_geometry_basic.cpp)
+    target_link_libraries(GeometryBasicTest Term3D)
+    
+    add_executable(MeshTest tests/test_mesh.cpp)
+    target_link_libraries(MeshTest Term3D)
+    
+    add_executable(RendererInterfaceTest tests/test_renderer_interface.cpp)
+    target_link_libraries(RendererInterfaceTest Term3D)
+endif()
 
-add_executable(MatrixTest tests/test_matrix.cpp)
-target_link_libraries(MatrixTest Term3D)
-
-add_executable(InversionTest tests/test_matrix_inversion.cpp)
-target_link_libraries(InversionTest Term3D)
-
-add_executable(GeometryBasicTest tests/test_geometry_basic.cpp)
-target_link_libraries(GeometryBasicTest Term3D)
-
-add_executable(MeshTest tests/test_mesh.cpp)
-target_link_libraries(MeshTest Term3D)
-
-add_executable(RendererInterfaceTest tests/test_renderer_interface.cpp)
-target_link_libraries(RendererInterfaceTest Term3D)
-
-add_executable(SimpleCubeDemo demo/simple_cube.cpp)
-add_executable(TransformationChainDemo demo/transformation_chain.cpp)
-add_executable(RealtimeMeshDemo demo/realtime_mesh.cpp)
-
-target_link_libraries(SimpleCubeDemo Term3D glfw)
-target_link_libraries(TransformationChainDemo Term3D glfw)
-target_link_libraries(RealtimeMeshDemo Term3D glfw)
+if(TERM3D_BUILD_DEMOS)
+    add_executable(SimpleCubeDemo demo/simple_cube.cpp)
+    add_executable(TransformationChainDemo demo/transformation_chain.cpp)
+    add_executable(RealtimeMeshDemo demo/realtime_mesh.cpp)
+    
+    target_link_libraries(SimpleCubeDemo Term3D glfw)
+    target_link_libraries(TransformationChainDemo Term3D glfw)
+    target_link_libraries(RealtimeMeshDemo Term3D glfw)
+endif()

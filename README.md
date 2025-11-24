@@ -15,5 +15,25 @@ Term3D is a minimalist 3D rendering framework that provides core functionality f
 - **Mesh Management**: Dynamic mesh creation and modification
 - **Bounding Box**: Collision detection support
 
-> Check out /demos for demos/examples on how to use Term3D. 
+## Usage
+
+Add to your CMakeLists.txt:
+```cmake
+include(FetchContent)
+FetchContent_Declare(
+    Term3D
+    GIT_REPOSITORY https://github.com/arungeorgesaji/Term3D.git
+    GIT_TAG v1.0.0
+)
+FetchContent_MakeAvailable(Term3D)
+
+target_link_libraries(YourApp Term3D)
+```
+
+## Requirements
+- OpenGL
+- GLEW
+- GLFW3 (for demos only)
+
+> Check out /demo for demos/examples on how to use Term3D. 
 > The library was made for siege during my exam week and is not worked on much and is not ready for any real use. As it has very limited features and documentation.
