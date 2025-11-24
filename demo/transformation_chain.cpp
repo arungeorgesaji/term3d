@@ -1,9 +1,9 @@
 #include <iostream>
 #include <chrono>
 #include <cmath>
-#include "../include/Core/GraphicsEngine.h"
-#include "../include/Geometry/Mesh.h"
-#include "../include/Math3D/MathUtils.h"
+#include "Core/GraphicsEngine.h"
+#include "Geometry/Mesh.h"
+#include "Math3D/MathUtils.h"
 
 using namespace Core;
 using namespace Geometry;

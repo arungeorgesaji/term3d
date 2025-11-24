@@ -4,7 +4,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 option(TERM3D_BUILD_TESTS "Build tests" OFF)
-option(TERM3D_BUILD_DEMOS "Build demos" OFF)
 
 find_package(OpenGL REQUIRED)
 find_package(glfw3 REQUIRED)
@@ -51,14 +50,4 @@ if(TERM3D_BUILD_TESTS)
     
     add_executable(RendererInterfaceTest tests/test_renderer_interface.cpp)
     target_link_libraries(RendererInterfaceTest Term3D)
-endif()
-
-if(TERM3D_BUILD_DEMOS)
-    add_executable(SimpleCubeDemo demo/simple_cube.cpp)
-    add_executable(TransformationChainDemo demo/transformation_chain.cpp)
-    add_executable(RealtimeMeshDemo demo/realtime_mesh.cpp)
-    
-    target_link_libraries(SimpleCubeDemo Term3D glfw)
-    target_link_libraries(TransformationChainDemo Term3D glfw)
-    target_link_libraries(RealtimeMeshDemo Term3D glfw)
 endif()
